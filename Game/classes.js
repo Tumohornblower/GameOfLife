@@ -1,11 +1,7 @@
-class Grass {
-    constructor(x, y) {
-
-        this.x = x;
-        this.y = y;
-        this.colorCode = 1;
-        this.rounds = 0;
-        // Nachbarfelder
+class Lebewesen{
+    constructor(x, y){
+        this.x = x
+        this.y = y
         this.neighbors = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -16,9 +12,7 @@ class Grass {
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
         ];
-
     }
-
     findFields(symbol, symbol2 = 100) {
         let found = [];
         for (let i = 0; i < this.neighbors.length; i++) {
@@ -33,6 +27,19 @@ class Grass {
         }
         return found;
     }
+}
+
+
+
+
+class Grass extends Lebewesen{
+    constructor(x, y) {
+        super(x, y)
+        this.colorCode = 1;
+        this.rounds = 0;
+
+    }
+
     mul() {
         this.rounds += 1
         if (this.rounds >= 6) {
@@ -52,25 +59,15 @@ class Grass {
 
 }
 
-class Fresser {
+class Fresser extends Lebewesen{
     constructor(x, y) {
+        super(x, y)
         this.eaten = 0
         this.notEaten = 0
-        this.x = x;
-        this.y = y;
         this.colorCode = 2;
         this.rounds = 0;
         // Nachbarfelder
-        this.neighbors = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+
 
     }
 
@@ -85,18 +82,7 @@ class Fresser {
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
         ];
-        let found = [];
-        for (let i = 0; i < this.neighbors.length; i++) {
-            let pos = this.neighbors[i];
-            let posX = pos[0];
-            let posY = pos[1];
-            if (posX >= 0 && posY >= 0 && posX < matrix[0].length && posY < matrix.length) {
-                if (matrix[posY][posX] === symbol || matrix[posY][posX] === symbol2) {
-                    found.push(pos);
-                }
-            }
-        }
-        return found;
+        return super.findFields(symbol, symbol2)
     }
     move() {
         this.rounds += 1
@@ -109,8 +95,7 @@ class Fresser {
                 matrix[this.y][this.x] = 0
                 matrix[newY][newX] = this.colorCode
                 this.x = newX
-                this
-                    .y = newY
+                this.y = newY
             }
             this.rounds = 0
         }
@@ -178,25 +163,15 @@ class Fresser {
         }
     }
 }
-class Predator {
+class Predator extends Lebewesen{
     constructor(x, y) {
+
+        super(x, y)
         this.eaten = 0
         this.notEaten = 0
-        this.x = x;
-        this.y = y;
         this.colorCode = 3;
         this.rounds = 0;
-        // Nachbarfelder
-        this.neighbors = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
+
 
     }
 
@@ -211,18 +186,7 @@ class Predator {
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
         ];
-        let found = [];
-        for (let i = 0; i < this.neighbors.length; i++) {
-            let pos = this.neighbors[i];
-            let posX = pos[0];
-            let posY = pos[1];
-            if (posX >= 0 && posY >= 0 && posX < matrix[0].length && posY < matrix.length) {
-                if (matrix[posY][posX] === symbol || matrix[posY][posX] === symbol2) {
-                    found.push(pos);
-                }
-            }
-        }
-        return found;
+        return super.findFields(symbol, symbol2)
     } move() {
         this.rounds += 1
         if (this.rounds >= 1) {
@@ -306,39 +270,13 @@ class Predator {
 // Das Wasser wird zufällig auf dem Bildschirm gespawnt, es kennt seine Nachbarfelder und kann sich alle 6 Runden in max. 3 umliegende freiliegende Felder vermehren.
 // Die Farbe ist blau. Hat Gras um sich herum Wasser, so "frisst" es das Wasser. Gleichzeitig kann sich das Grasobjekt, das das Wasser "gefressen" hat in alle umliegenden, freien
 // Nachbarfelder vermehren. Das Wasser macht das gras also stärker
-class Water {
+class Water extends Lebewesen{
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+
+        super(x, y)
         this.colorCode = 4;
         this.rounds = 0;
-        // Nachbarfelder
-        this.neighbors = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
 
-    }
-
-    findFields(symbol, symbol2 = 1000) {
-        let found = [];
-        for (let i = 0; i < this.neighbors.length; i++) {
-            let pos = this.neighbors[i];
-            let posX = pos[0];
-            let posY = pos[1];
-            if (posX >= 0 && posY >= 0 && posX < matrix[0].length && posY < matrix.length) {
-                if (matrix[posY][posX] === symbol || matrix[posY][posX] === symbol2) {
-                    found.push(pos);
-                }
-            }
-        }
-        return found;
     }
     mul() {
         this.rounds += 1
@@ -400,14 +338,14 @@ class Water {
 // andere Lebewesen. Seine Farbe ist braun. Nach dem Einschlag kann jedes Lebewesen wieder in Das Gebiet zurückkehren. Manchmal kommt es auch vor, dass
 // der Einschlag eine WasserQuelle freilegt.
 
-class Meteor {
+class Meteor extends Lebewesen{
     constructor(x, y) {
+
+        super(x, y)
         this.waterquelle = false
         if (randomNumber(0, 2) === 1) {
             this.waterquelle = true
         }
-        this.x = x;
-        this.y = y;
         this.colorCode = 5;
         // beinhaltete Felder
         this.fields = [
