@@ -4,11 +4,15 @@ let obj = {
     "age": 13,
     "tumo_student": true,
 
-    sayHello(){
+    sayHello() {
         console.log(this.first_name)
     }
- }
+}
 
- console.log(obj);
- console.log(obj.first_name);
- obj.sayHello
+
+console.log("obj");
+console.log(obj);
+console.log("obj.first_name");
+console.log(obj.first_name);
+console.log("obj.sayHello");
+obj.sayHello();
