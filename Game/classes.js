@@ -1,5 +1,5 @@
-class Lebewesen{
-    constructor(x, y){
+class Lebewesen {
+    constructor(x, y) {
         this.x = x
         this.y = y
         this.neighbors = [
@@ -8,7 +8,7 @@ class Lebewesen{
             [this.x + 1, this.y - 1],
             [this.x - 1, this.y],
             [this.x +
-                 1, this.y],
+                1, this.y],
             [this.x - 1, this.y + 1],
             [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
@@ -33,7 +33,7 @@ class Lebewesen{
 
 
 
-class Grass extends Lebewesen{
+class Grass extends Lebewesen {
     constructor(x, y) {
         super(x, y)
         this.colorCode = 1;
@@ -60,7 +60,7 @@ class Grass extends Lebewesen{
 
 }
 
-class Fresser extends Lebewesen{
+class Fresser extends Lebewesen {
     constructor(x, y) {
         super(x, y)
         this.eaten = 0
@@ -164,7 +164,7 @@ class Fresser extends Lebewesen{
         }
     }
 }
-class Predator extends Lebewesen{
+class Predator extends Lebewesen {
     constructor(x, y) {
 
         super(x, y)
@@ -271,7 +271,7 @@ class Predator extends Lebewesen{
 // Das Wasser wird zufällig auf dem Bildschirm gespawnt, es kennt seine Nachbarfelder und kann sich alle 6 Runden in max. 3 umliegende freiliegende Felder vermehren.
 // Die Farbe ist blau. Hat Gras um sich herum Wasser, so "frisst" es das Wasser. Gleichzeitig kann sich das Grasobjekt, das das Wasser "gefressen" hat in alle umliegenden, freien
 // Nachbarfelder vermehren. Das Wasser macht das gras also stärker
-class Water extends Lebewesen{
+class Water extends Lebewesen {
     constructor(x, y) {
 
         super(x, y)
@@ -339,7 +339,7 @@ class Water extends Lebewesen{
 // andere Lebewesen. Seine Farbe ist braun. Nach dem Einschlag kann jedes Lebewesen wieder in Das Gebiet zurückkehren. Manchmal kommt es auch vor, dass
 // der Einschlag eine WasserQuelle freilegt.
 
-class Meteor extends Lebewesen{
+class Meteor extends Lebewesen {
     constructor(x, y) {
 
         super(x, y)
