@@ -30,7 +30,7 @@ function getRandomMatrix(breite, höhe) {
         array.push(2);
       } else if (randomNumber(0, 100) > 70) {
         array.push(4);
-      } else {      
+      } else {
         array.push(1);
       }
     }
@@ -60,48 +60,7 @@ function setup() {
     }
   }
 }
-
-let count = 0
-
 function draw() {
-    console.log(grassArr)
-    console.log(fressArr)
-    console.log(predatorArr)
-    console.log(waterArr)
-    
-    // count ++
-    // if (count >= 120) {
-    //     count = 0
-    //     grassArr = [];
-    //     fressArr = [];
-    //     predatorArr = [];
-    //     waterArr = [];
-    //     let matrix = [
-    //         [0, 0, 1, 0, 0],
-    //         [1, 0, 0, 0, 0],
-    //         [0, 1, 0, 0, 4],
-    //         [0, 0, 1, 0, 0],
-    //         [1, 1, 0, 0, 0],
-    //         [1, 1, 0, 0, 0],
-    //         [1, 1, 1, 0, 0],
-    //       ];
-    //     matrix = getRandomMatrix(100, 100)
-    //     for (let y = 0; y < matrix.length; y++) {
-    //         for (let x = 0; x < matrix[y].length; x++) {
-    //           if (matrix[y][x] === 1) {
-    //             grassArr.push(new Grass(x, y));
-    //           } else if (matrix[y][x] === 2) {
-    //             fressArr.push(new Fresser(x, y));
-    //           } else if (matrix[y][x] === 3) {
-    //             predatorArr.push(new Predator(x, y));
-    //           } else if (matrix[y][x] === 4) {
-    //             waterArr.push(new Water(x, y));
-    //           }
-    //         }
-    //       }
-    // }
-
-
  // const copyFresserList = [...fressArr];
 //   for (let i = 0; i < copyFresserList.length; i++) {
 //     if (copyFresserList[i].mul() === false) {
@@ -131,6 +90,7 @@ function draw() {
     fresser.mul();
   }
 
+
 //   const copyWaterLIst = [...waterArr];
 //   for (let i = 0; i < copyWaterLIst.length; i++) {
 //     copyWaterLIst[i].mul();
@@ -139,8 +99,6 @@ function draw() {
   for (let i = 0; i < waterArr.length; i++) {
     waterArr[i].mul();
   }
-
-  count ++
 
 //   const copyPredatorList = [...predatorArr];
 //   for (let i = 0; i < copyPredatorList.length; i++) {
@@ -194,4 +152,10 @@ function draw() {
       rect(x * side, y * side, side, side);
     }
   }
+
+  console.log("grass", grassArr.length);
+  console.log("fress", fressArr.length);
+  console.log("pred", predatorArr.length);
+  console.log("water", waterArr.length)
+
 }
