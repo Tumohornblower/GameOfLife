@@ -61,24 +61,6 @@ function setup() {
   }
 }
 function draw() {
- // const copyFresserList = [...fressArr];
-//   for (let i = 0; i < copyFresserList.length; i++) {
-//     if (copyFresserList[i].mul() === false) {
-//       if (copyFresserList[i].eat() === false) {
-//         copyFresserList[i].resetEat();
-//         copyFresserList[i].move();
-//       } else {
-//         copyFresserList[i].plusEat();
-//       }
-//     } else {
-//       copyFresserList[i].resetEat();
-//     }
-//     copyFresserList[i].die();
-//   }
-//   const copyGrassList = [...grassArr];
-//   for (let i = 0; i < copyGrassList.length; i++) {
-//     copyGrassList[i].mul();
-//   }
 
   for (let i = 0; i < grassArr.length; i++) {
     grassArr[i].mul();
@@ -91,29 +73,11 @@ function draw() {
   }
 
 
-//   const copyWaterLIst = [...waterArr];
-//   for (let i = 0; i < copyWaterLIst.length; i++) {
-//     copyWaterLIst[i].mul();
-//   }
 
   for (let i = 0; i < waterArr.length; i++) {
     waterArr[i].mul();
   }
 
-//   const copyPredatorList = [...predatorArr];
-//   for (let i = 0; i < copyPredatorList.length; i++) {
-//     if (copyPredatorList[i].mul() === false) {
-//       if (copyPredatorList[i].eat() === false) {
-//         copyPredatorList[i].resetEat();
-//         copyPredatorList[i].move();
-//       } else {
-//         copyPredatorList[i].plusEat();
-//       }
-//     } else {
-//       copyPredatorList[i].resetEat();
-//     }
-//     copyPredatorList[i].die();
-//   }
   for (let i = 0; i < predatorArr.length; i++) {
     let pred = predatorArr[i];
     pred.eat();
@@ -152,10 +116,5 @@ function draw() {
       rect(x * side, y * side, side, side);
     }
   }
-
-  console.log("grass", grassArr.length);
-  console.log("fress", fressArr.length);
-  console.log("pred", predatorArr.length);
-  console.log("water", waterArr.length)
 
 }
