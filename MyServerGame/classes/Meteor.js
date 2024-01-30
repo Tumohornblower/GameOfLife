@@ -1,4 +1,11 @@
+function randomNumber(min = 0, max) {
+    kommazahl = Math.random();
+    return Math.floor(kommazahl * max);
+  }
+
 const Lebewesen = require("./Lebewesen.js")
+const Water = require("./Water.js")
+
 module.exports = class Meteor extends Lebewesen {
     constructor(x, y) {
         super(x, y);

@@ -1,4 +1,8 @@
-const Lebewesen = require("./Lebewesen.js")
+function randomNumber(min = 0, max) {
+    kommazahl = Math.random();
+    return Math.floor(kommazahl * max);
+  }
+
 module.exports = class Lebewesen {
     constructor(x, y) {
         this.x = x;

@@ -1,3 +1,8 @@
+function randomNumber(min = 0, max) {
+    kommazahl = Math.random();
+    return Math.floor(kommazahl * max);
+  }
+
 const Lebewesen = require("./Lebewesen.js")
 module.exports = class Predator extends Lebewesen {
     constructor(x, y) {
@@ -25,7 +30,7 @@ module.exports = class Predator extends Lebewesen {
     move() {
         let emptyFields = this.findFields(0, 5);
         if (emptyFields.length > 0) {
-            let pos = random(emptyFields);
+            let pos = emptyFields[randomNumber(0, emptyFields.length)]
             let newX = pos[0];
             let newY = pos[1];
             matrix[this.y][this.x] = 0;
@@ -37,7 +42,7 @@ module.exports = class Predator extends Lebewesen {
     eat() {
         let fresserfields = this.findFields(2);
         if (fresserfields.length > 0) {
-            let pos = random(fresserfields);
+            let pos = fresserfields[randomNumber(0, fresserfields.length)];
             let newX = pos[0];
             let newY = pos[1];
             matrix[this.y][this.x] = 0;
@@ -66,7 +71,7 @@ module.exports = class Predator extends Lebewesen {
         if (this.eaten >= 5) {
             let emptyFields = this.findFields(0, 5);
             if (emptyFields.length > 0) {
-                let pos = random(emptyFields);
+                let pos = emptyFields[randomNumber(0, emptyFields.length)]
                 let newX = pos[0];
                 let newY = pos[1];
                 fressArr.push(new Predator(newX, newY));

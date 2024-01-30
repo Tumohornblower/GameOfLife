@@ -1,3 +1,7 @@
+function randomNumber(min = 0, max) {
+    kommazahl = Math.random();
+    return Math.floor(kommazahl * max);
+  }
 const Lebewesen = require("./Lebewesen.js")
 module.exports = class Grass extends Lebewesen {
     constructor(x, y) {
@@ -11,7 +15,7 @@ module.exports = class Grass extends Lebewesen {
         if (this.rounds >= 6) {
             let emptyFields = this.findFields(0, 5);
             if (emptyFields.length > 0) {
-                let pos = random(emptyFields);
+                let pos = emptyFields[randomNumber(0, emptyFields.length)]
                 let newX = pos[0];
                 let newY = pos[1];
                 if (newX >= 0 && newY >= 0 && newX < 100 && newY < 100) {
