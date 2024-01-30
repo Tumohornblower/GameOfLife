@@ -1,3 +1,4 @@
+const Lebewesen = require("./Lebewesen.js")
 module.exports = class Lebewesen {
     constructor(x, y) {
         this.x = x;
