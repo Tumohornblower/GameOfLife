@@ -7,6 +7,7 @@ const Water = require("./classes/Water")
 
 const express = require("express")
 const app = express()
+let { Server } = require("socket.io")
 
 app.listen(3000, function () {
   console.log("Der Server läuft auf Port 3000")
