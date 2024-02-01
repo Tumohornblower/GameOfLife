@@ -7,23 +7,61 @@ const Water = require("./classes/Water")
 
 const express = require("express")
 const app = express()
-let { Server } = require("socket.io")
 
-app.listen(3000, function () {
+let server = require("http").Server(app)
+let io = require("socket.io")(server)
+
+app.use(express.static("./client"))
+app.get("/", function(req, res){
+  res.redirect("client.html")
+})
+
+let intervalId
+let gameStarted = false
+let clients = []
+
+server.listen(3000, function () {
   console.log("Der Server läuft auf Port 3000")
 
-  initGame()
-  console.log(matrix)
-  intervalId = setInterval(function () {
-    console.log("update Game")
-    updateGame()
-  }, 1000)
+  io.on("connection", function(socket){
+    console.log("ws-connection: new client", socket.id)
+
+    clients.push(socket.id)
+
+    if (clients.length == 1 && gameStarted == false){
+      initGame()
+      console.log(matrix)
+      intervalId = setInterval(function () {
+        console.log("update Game")
+        updateGame()
+      }, 1000)
+      gameStarted = true
+    }
+
+
+
+    socket.on("disconnect", function(reason){
+      console.log("client was disconnected: because of ", reason)
+
+      const foundIndex  = clients.findIndex(id => id == socket.id)
+      if(foundIndex >= 0){
+        clients.splice(foundIndex, 1)
+      }
+
+      if(clients.length == 0){
+        clearInterval(intervalId)
+        gameStarted = false
+        console.log("no client connected. Server stoped")
+      }
+    })
+  })
+
+
 })
 
 app.use(function (req, res, next) {
-  res.status(404).send("<h3>Error 404 </h3> <p> Bitter kontaktieren sie den ServerHost Theodor </p>")
+  res.status(404).send("<h3>Error 404 </h3> <p> Bitte kontaktieren sie den ServerHost Theodor </p>")
 })
-
 
 
 
